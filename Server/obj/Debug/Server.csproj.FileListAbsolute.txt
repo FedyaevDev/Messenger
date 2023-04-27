@@ -1,0 +1,17 @@
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\Server.exe.config
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\Server.exe
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\Server.pdb
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\BestMessenger.exe
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\EntityFramework.dll
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\BestMessenger.pdb
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\BestMessenger.exe.config
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\EntityFramework.xml
+C:\Users\feday\source\repos\BestMessenger\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+C:\Users\feday\source\repos\BestMessenger\Server\obj\Debug\Server.csproj.SuggestedBindingRedirects.cache
+C:\Users\feday\source\repos\BestMessenger\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\feday\source\repos\BestMessenger\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Users\feday\source\repos\BestMessenger\Server\obj\Debug\Server.exe
+C:\Users\feday\source\repos\BestMessenger\Server\obj\Debug\Server.pdb
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\Models.exe
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\Models.pdb
+C:\Users\feday\source\repos\BestMessenger\Server\bin\Debug\Models.exe.config

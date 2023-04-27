@@ -1,0 +1,8 @@
+C:\Users\feday\source\repos\BestMessenger\Models\bin\Debug\Models.exe.config
+C:\Users\feday\source\repos\BestMessenger\Models\bin\Debug\Models.exe
+C:\Users\feday\source\repos\BestMessenger\Models\bin\Debug\Models.pdb
+C:\Users\feday\source\repos\BestMessenger\Models\obj\Debug\Models.csproj.AssemblyReference.cache
+C:\Users\feday\source\repos\BestMessenger\Models\obj\Debug\Models.csproj.SuggestedBindingRedirects.cache
+C:\Users\feday\source\repos\BestMessenger\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+C:\Users\feday\source\repos\BestMessenger\Models\obj\Debug\Models.exe
+C:\Users\feday\source\repos\BestMessenger\Models\obj\Debug\Models.pdb
