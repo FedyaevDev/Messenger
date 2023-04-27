@@ -60,7 +60,7 @@
                           Background="Transparent"
                           BorderThickness="0"
                           ItemContainerStyle="{StaticResource MemberListStyle}"
-                          ItemsSource="{Binding Members}"
+                          ItemsSource="{Binding AllChatMembers}"
                           SelectedItem="{Binding SelectedMember}"
                           >
                 </ListView>

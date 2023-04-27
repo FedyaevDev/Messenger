@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\feday\source\repos\BestMessenger\BestMessenger\App.xaml
 102055220276
 
-211354909117
+20-566869004
 18-1889003128
 Infrastructure\Resources\AddMemberListStyle.xaml;Infrastructure\Resources\ChatStyle.xaml;Infrastructure\Resources\CustomTextBox.xaml;Infrastructure\Resources\MemberListStyle.xaml;Infrastructure\Resources\WindowBorderStyle.xaml;Infrastructure\Resources\WindowTopBorderBtnStyle.xaml;Views\AddNewFriendWindow.xaml;Views\AuthorizationWindow.xaml;Views\MainWindow.xaml;Views\RegistrationWindow.xaml;
 
-True
+False
 

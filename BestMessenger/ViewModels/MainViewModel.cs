@@ -91,7 +91,7 @@ namespace BestMessenger.ViewModels
         private Server _server;
         #endregion
 
-
+        public ObservableCollection<UserShellForServer> AllChatMembers { get; set; }
 
         public  MainViewModel()
         {
@@ -103,13 +103,21 @@ namespace BestMessenger.ViewModels
                 FirstName = "F1 test",
                 LastName = "L2 test"
             };
+            AllChatMembers = new ObservableCollection<UserShellForServer>();
+
+
             _server = new Server();
+            _server.ConnectedEvent += NewUserConnected;
             _server.ConnectedToServer(userShellForServer);
 
             getLastMessageEvent += GetLastMessage;
-            new RegistrationWindow().ShowDialog();
+            //new RegistrationWindow().ShowDialog();
         }
 
+        private void NewUserConnected(UserShellForServer user)
+        {
+            App.Current.Dispatcher.Invoke(() => AllChatMembers.Add(user));
+        }
 
         private async Task GetLastMessage(User user)
         {                                                                   //mainUser.Id

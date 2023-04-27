@@ -14,19 +14,19 @@ namespace Models.Helpers
     public class PacketReader : BinaryReader
     {
         NetworkStream stream;
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
+
         public PacketReader(NetworkStream stream) : base(stream)
         {
             this.stream = stream;
         }
         public UserShellForServer ReceiveUser()
         {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
             var user = (UserShellForServer)binaryFormatter.Deserialize(stream);
             return user;
         }
         public Message ReceiveMessage()
         {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
             var message = (Message)binaryFormatter.Deserialize(stream);
             return message;
         }

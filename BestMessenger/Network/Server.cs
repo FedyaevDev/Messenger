@@ -16,7 +16,7 @@ namespace BestMessenger.Network
         private PacketBuilder _packetBuilder;
         public PacketReader PacketReader { get; private set; }
 
-        public event Action ConnectedEvent;
+        public event Action<UserShellForServer> ConnectedEvent;
         public event Action MessageReceiveEvent;
         public event Action DisconnectedEvent;
 
@@ -34,7 +34,7 @@ namespace BestMessenger.Network
                 PacketReader = new PacketReader(client.GetStream());
 
                 packet.SendUser(user);
-                client.Client.Send(packet.GetPacket());
+                client.Client.Send(packet.GetPacket()); // F1 Test byte[]
                 ReadInputPackets();
             }
         }
@@ -49,7 +49,9 @@ namespace BestMessenger.Network
                     switch (operation)
                     {
                         case 0:
-                            ConnectedEvent?.Invoke();
+                            UserShellForServer user = PacketReader.ReceiveUser();
+                            ConnectedEvent?.Invoke(user);
+                            //if (ConnectedEvent != null) ConnectedEvent(user);
                             break;
                         case 1:
                             MessageReceiveEvent?.Invoke();
