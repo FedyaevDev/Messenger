@@ -28,7 +28,7 @@ namespace Models.Helpers
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             binaryFormatter.Serialize(stream, user);
         }
-        public void SendMessage(Message message)
+        public void SendMessage(MessageShellForServer message)
         {
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             binaryFormatter.Serialize(stream, message);

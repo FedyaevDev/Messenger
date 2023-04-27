@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BestMessenger.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,11 @@ namespace BestMessenger.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new AddNewFriendWindow().ShowDialog();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ((MainViewModel)DataContext).Connect();
         }
     }
 }

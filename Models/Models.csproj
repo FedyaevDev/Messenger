@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Helpers\PacketBuilder.cs" />
     <Compile Include="Helpers\PacketReader.cs" />
+    <Compile Include="ModelShells\MessageShellForServer.cs" />
     <Compile Include="ModelShells\UserShellForAddFreind.cs" />
     <Compile Include="ModelShells\UserShellForServer.cs" />
     <Compile Include="Models\Group.cs" />

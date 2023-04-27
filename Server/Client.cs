@@ -39,8 +39,8 @@ namespace Server
                     switch (operation)
                     {
                         case 0:
-                                //var user = _packetReader.ReceiveUser();
-                                //Program.BroadcastConnection(user);
+                            var user = _packetReader.ReceiveUser();
+                            Program.BroadcastConnection();
                             break;
                         case 1:
                                 var message = _packetReader.ReceiveMessage();

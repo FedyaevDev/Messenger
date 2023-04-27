@@ -8,6 +8,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Models.ModelShells;
+using System.Runtime.Remoting.Messaging;
 
 namespace Server
 {
@@ -30,7 +32,7 @@ namespace Server
 
         }
 
-        private static void BroadcastConnection()
+        public static void BroadcastConnection()
         {
             foreach (var item in clients)
             {
@@ -41,14 +43,18 @@ namespace Server
             }
         }
 
-        public static void BroadcastMessage(Message message)
+        public static void BroadcastMessage(MessageShellForServer message)
         {
             foreach (var item in clients)
             {
-                var packet = new PacketBuilder();
-                packet.WriteOperation(1);
-                packet.SendMessage(message);
-                item.ClientSocket.Client.Send(packet.GetPacket());
+                if(item.User.Id == message.Receiver.Id)
+                {
+                    var packet = new PacketBuilder();
+                    packet.WriteOperation(1);
+                    packet.SendMessage(message);
+                    item.ClientSocket.Client.Send(packet.GetPacket());
+                }
+              
             }
         }
     }

@@ -17,7 +17,7 @@ namespace BestMessenger.Network
         public PacketReader PacketReader { get; private set; }
 
         public event Action<UserShellForServer> ConnectedEvent;
-        public event Action MessageReceiveEvent;
+        public event Action<MessageShellForServer> MessageReceiveEvent;
         public event Action DisconnectedEvent;
 
 
@@ -54,7 +54,8 @@ namespace BestMessenger.Network
                             //if (ConnectedEvent != null) ConnectedEvent(user);
                             break;
                         case 1:
-                            MessageReceiveEvent?.Invoke();
+                            var message = PacketReader.ReceiveMessage();
+                            MessageReceiveEvent?.Invoke(message);
                             break;
                         case 2:
                             break;
@@ -65,7 +66,7 @@ namespace BestMessenger.Network
             });
         }
 
-        public void SendMessageToSever(Message message)
+        public void SendMessageToSever(MessageShellForServer message)
         {
             var packet = new PacketBuilder();
             packet.WriteOperation(1);

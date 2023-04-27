@@ -25,9 +25,9 @@ namespace Models.Helpers
             var user = (UserShellForServer)binaryFormatter.Deserialize(stream);
             return user;
         }
-        public Message ReceiveMessage()
+        public MessageShellForServer ReceiveMessage()
         {
-            var message = (Message)binaryFormatter.Deserialize(stream);
+            var message = (MessageShellForServer)binaryFormatter.Deserialize(stream);
             return message;
         }
     }

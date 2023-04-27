@@ -26,7 +26,13 @@ namespace BestMessenger.ViewModels
         public ActionCommand CloseAppCommand => new ActionCommand(x => Application.Current.Shutdown());
         public ActionCommand WindowMinimizeCommand => new ActionCommand(x => Application.Current.MainWindow.WindowState = WindowState.Minimized);
         public ActionCommand WindowMaximizeCommand => new ActionCommand(x => MaximizeCommand());
-        public ActionCommand SendMessageCommand => new ActionCommand(x => MessageBox.Show("test"));
+        public ActionCommand SendMessageCommand => new ActionCommand(x => _server.SendMessageToSever(new MessageShellForServer
+        {
+            DateOfSend = DateTime.Now,
+            Text = NewText,
+            Sender = AllChatMembers.First(),
+            Receiver = UserForChat
+        }));
         #endregion
 
         #region Property
@@ -92,31 +98,95 @@ namespace BestMessenger.ViewModels
         #endregion
 
         public ObservableCollection<UserShellForServer> AllChatMembers { get; set; }
+        public ObservableCollection<MessageShellForServer> Messages { get; set; } = new ObservableCollection<MessageShellForServer>();
+
+        private ObservableCollection<UserShellForServer> listForTest;
+        public ObservableCollection<UserShellForServer> ListForTest
+        {
+            get => listForTest;
+            set 
+            {
+                listForTest = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private UserShellForServer selectedUser;
+
+        public UserShellForServer SelectedUser
+        {
+            get { return selectedUser; }
+            set { selectedUser = value; OnPropertyChanged(); }
+        }
+
+        private UserShellForServer userForChat;
+
+        public UserShellForServer UserForChat
+        {
+            get { return userForChat; }
+            set { userForChat = value; OnPropertyChanged(); }
+        }
+
 
         public  MainViewModel()
         {
             _userService = new UserService();
             
             LoadInfo().GetAwaiter();
+
+            ObservableCollection<UserShellForServer> temp = new ObservableCollection<UserShellForServer>();
             UserShellForServer userShellForServer = new UserShellForServer
             {
+                Id=1,
                 FirstName = "F1 test",
                 LastName = "L2 test"
             };
+            UserShellForServer userShellForServer2 = new UserShellForServer
+            {
+                Id=2,
+                FirstName = "F2 test",
+                LastName = "L3 test"
+            };
+            UserShellForServer userShellForServer3 = new UserShellForServer
+            {
+                Id =3,
+                FirstName = "F3 test",
+                LastName = "L4 test"
+            };
+            temp.Add(userShellForServer);
+            temp.Add(userShellForServer2);
+            temp.Add(userShellForServer3);
+
+            ListForTest = temp;
+
+
             AllChatMembers = new ObservableCollection<UserShellForServer>();
 
 
             _server = new Server();
             _server.ConnectedEvent += NewUserConnected;
-            _server.ConnectedToServer(userShellForServer);
+            _server.MessageReceiveEvent += MessageReceive;
+
+            //_server.ConnectedToServer(userShellForServer);
 
             getLastMessageEvent += GetLastMessage;
             //new RegistrationWindow().ShowDialog();
         }
 
+
+        public void Connect()
+        {
+            _server.ConnectedToServer(SelectedUser);
+        }
+
         private void NewUserConnected(UserShellForServer user)
         {
             App.Current.Dispatcher.Invoke(() => AllChatMembers.Add(user));
+        }
+
+        private void MessageReceive(MessageShellForServer message)
+        {
+            App.Current.Dispatcher.Invoke(()=> Messages.Add(message));
         }
 
         private async Task GetLastMessage(User user)

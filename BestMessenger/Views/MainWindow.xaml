@@ -55,13 +55,19 @@
                         </Button.Template>
                     </Button>
                 </UniformGrid>
-               
+                <ComboBox ItemsSource="{Binding ListForTest}"
+                          DisplayMemberPath="FirstName"
+                          SelectedItem="{Binding SelectedUser}"
+                          SelectionChanged="ComboBox_SelectionChanged"
+                          >
+                    
+                </ComboBox>
                 <ListView Grid.Row="1"
                           Background="Transparent"
                           BorderThickness="0"
                           ItemContainerStyle="{StaticResource MemberListStyle}"
                           ItemsSource="{Binding AllChatMembers}"
-                          SelectedItem="{Binding SelectedMember}"
+                          SelectedItem="{Binding UserForChat}"
                           >
                 </ListView>
 
@@ -107,7 +113,7 @@
                 <ListView Grid.Row="1" 
                           Background="Transparent"
                           BorderThickness="0"
-                          ItemsSource="{Binding MessagesWithSelectedUser}"
+                          ItemsSource="{Binding Messages}"
                           ItemContainerStyle="{StaticResource ChatItem}"
                           />
                 <Grid Grid.Row="2">
@@ -119,7 +125,9 @@
                              Text="Placeholder"
                              Style="{StaticResource CustomTextBox}"
                              />
-                    <Button Grid.Column="1" Margin="25">
+                    <Button Grid.Column="1" Margin="25"
+                            Command="{Binding SendMessageCommand}"
+                            >
                         <Button.Template>
                             <ControlTemplate>
                                 <fa:ImageAwesome Icon="Send"
