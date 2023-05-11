@@ -93,7 +93,7 @@ namespace BestMessenger.ViewModels
 
         public ObservableCollection<UserShellForServer> AllChatMembers { get; set; }
 
-        public  MainViewModel()
+        public  MainViewModel(User user)
         {
             _userService = new UserService();
             
