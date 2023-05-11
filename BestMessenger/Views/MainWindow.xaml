@@ -14,9 +14,6 @@
         ResizeMode="CanResizeWithGrip"
         MouseDown="Window_MouseDown"
         >
-    <Window.DataContext>
-        <vm:MainViewModel x:Name="MainViewModel"></vm:MainViewModel>
-    </Window.DataContext>
     <DockPanel>
         <ContentControl DockPanel.Dock="Top"
                         ContentTemplate="{StaticResource ResourceKey=WindowBorderStyle}"
@@ -45,7 +42,7 @@
                        FontWeight="Bold"
                        Margin="15,0,0,0"
                        />
-                    <Button Width="30" Height="30" 
+                    <Button Width="30" Height="30" x:Name="btn"
                             Click="Button_Click">
                         <Button.Template>
                             <ControlTemplate>
@@ -60,7 +57,7 @@
                           Background="Transparent"
                           BorderThickness="0"
                           ItemContainerStyle="{StaticResource MemberListStyle}"
-                          ItemsSource="{Binding AllChatMembers}"
+                          ItemsSource="{Binding AllUsers}"
                           SelectedItem="{Binding SelectedMember}"
                           >
                 </ListView>
@@ -107,7 +104,7 @@
                 <ListView Grid.Row="1" 
                           Background="Transparent"
                           BorderThickness="0"
-                          ItemsSource="{Binding MessagesWithSelectedUser}"
+                          ItemsSource="{Binding AllMessages}"
                           ItemContainerStyle="{StaticResource ChatItem}"
                           />
                 <Grid Grid.Row="2">
