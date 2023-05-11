@@ -28,7 +28,7 @@ namespace BestMessenger.ViewModels
         public ActionCommand WindowMaximizeCommand => new ActionCommand(x => MaximizeCommand());
         //public ActionCommand SendMessageCommand => new ActionCommand(x => MessageBox.Show("test"));
         #endregion
-
+        public string SomeTextForTextText {get;set;}
         #region Property
 
         private event Func<User,Task> getLastMessageEvent;
