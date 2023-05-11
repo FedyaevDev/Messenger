@@ -26,7 +26,7 @@ namespace BestMessenger.ViewModels
         public ActionCommand CloseAppCommand => new ActionCommand(x => Application.Current.Shutdown());
         public ActionCommand WindowMinimizeCommand => new ActionCommand(x => Application.Current.MainWindow.WindowState = WindowState.Minimized);
         public ActionCommand WindowMaximizeCommand => new ActionCommand(x => MaximizeCommand());
-        public ActionCommand SendMessageCommand => new ActionCommand(x => MessageBox.Show("test"));
+        //public ActionCommand SendMessageCommand => new ActionCommand(x => MessageBox.Show("test"));
         #endregion
         public string SomeTextForTextText {get;set;}
         #region Property
@@ -93,26 +93,71 @@ namespace BestMessenger.ViewModels
 
         public ObservableCollection<UserShellForServer> AllChatMembers { get; set; }
 
-        public  MainViewModel(User user)
-        {
-            _userService = new UserService();
+        //public  MainViewModel()
+        //{
+        //    _userService = new UserService();
             
-            LoadInfo().GetAwaiter();
-            UserShellForServer userShellForServer = new UserShellForServer
-            {
-                FirstName = "F1 test",
-                LastName = "L2 test"
-            };
-            AllChatMembers = new ObservableCollection<UserShellForServer>();
+        //    LoadInfo().GetAwaiter();
+        //    UserShellForServer userShellForServer = new UserShellForServer
+        //    {
+        //        FirstName = "F1 test",
+        //        LastName = "L2 test"
+        //    };
+        //    AllChatMembers = new ObservableCollection<UserShellForServer>();
 
 
-            _server = new Server();
-            _server.ConnectedEvent += NewUserConnected;
-            _server.ConnectedToServer(userShellForServer);
+        //    _server = new Server();
+        //    _server.ConnectedEvent += NewUserConnected;
+        //    _server.ConnectedToServer(userShellForServer);
 
-            getLastMessageEvent += GetLastMessage;
-            //new RegistrationWindow().ShowDialog();
+        //    getLastMessageEvent += GetLastMessage;
+        //    //new RegistrationWindow().ShowDialog();
+        //}
+
+
+        public ObservableCollection<UserShellForServer> AllUsers { get; set; }
+
+        public ObservableCollection<Message> AllMessages { get; set; }
+
+        private User user;
+
+        public User User
+        {
+            get { return user; }
+            set { user = value; OnPropertyChanged(); }
         }
+
+        public SendMessageCommand SendMessageCommand { get; set; }
+
+        public MainViewModel(SignalRService signalRService)
+        {
+            SendMessageCommand = new SendMessageCommand(this, signalRService);
+            AllUsers = new ObservableCollection<UserShellForServer>();
+            AllMessages = new ObservableCollection<Message>();
+            signalRService.MessageReceivedEvent += SignalRService_MessageReceivedEvent;
+            signalRService.UserReceivedEvent += SignalRService_UserReceivedEvent;
+            
+        }
+
+        private void SignalRService_UserReceivedEvent(UserShellForServer obj)
+        {
+            App.Current.Dispatcher.Invoke(() => AllUsers.Add(obj));
+        }
+
+        private void SignalRService_MessageReceivedEvent(Message obj)
+        {
+           App.Current.Dispatcher.Invoke(() => AllMessages.Add(obj));
+        }
+
+        public static MainViewModel CreateViewModel(SignalRService signalRService)
+        {
+            MainViewModel viewModel = new MainViewModel(signalRService);
+            signalRService.Connect(new UserShellForServer { FirstName = "Person"});
+            return viewModel;
+        }
+
+
+
 
         private void NewUserConnected(UserShellForServer user)
         {

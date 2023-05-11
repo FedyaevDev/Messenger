@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\feday\source\repos\BestMessenger\BestMessenger\obj\Debug\
+C:\Users\feday\Messenger\BestMessenger\obj\Debug\
 BestMessenger
 none
 false
 DEBUG;TRACE
-C:\Users\feday\source\repos\BestMessenger\BestMessenger\App.xaml
+C:\Users\feday\Messenger\BestMessenger\App.xaml
 102055220276
 
-20-566869004
-18-1889003128
+22-2084015403
+1511518228157
 Infrastructure\Resources\AddMemberListStyle.xaml;Infrastructure\Resources\ChatStyle.xaml;Infrastructure\Resources\CustomTextBox.xaml;Infrastructure\Resources\MemberListStyle.xaml;Infrastructure\Resources\WindowBorderStyle.xaml;Infrastructure\Resources\WindowTopBorderBtnStyle.xaml;Views\AddNewFriendWindow.xaml;Views\AuthorizationWindow.xaml;Views\MainWindow.xaml;Views\RegistrationWindow.xaml;
 
 False
